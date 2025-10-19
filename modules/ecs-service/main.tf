@@ -54,17 +54,17 @@ resource "aws_instance" "ecs_instance" {
   key_name                    = "ecs-key"
   depends_on                  = [aws_iam_instance_profile.ecs_instance_profile]
   vpc_security_group_ids      = var.security_group_ids
-  user_data = base64encode(<<EOF
+  user_data =<<EOF
 #!/bin/bash
 echo ECS_BACKEND_HOST=https://ecs.us-east-2.amazonaws.com >> /etc/ecs/ecs.config;
 echo "ECS_CLUSTER=${var.cluster_name}" >> /etc/ecs/ecs.config;
 echo "ECS_ENABLE_TASK_IAM_ROLE=true" >> /etc/ecs/ecs.config;
 echo "ECS_ENABLE_CONTAINER_METADATA=true" >> /etc/ecs/ecs.config;
 systemctl daemon-reload
-systemctl enable ecs
-systemctl restart ecs
+systemctl enable --now ecs
+
 EOF
-  )
+
 
   tags = {
     Name = "ecs-demo-instance-${count.index}"
