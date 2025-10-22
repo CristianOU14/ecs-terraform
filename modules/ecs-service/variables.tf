@@ -1,6 +1,5 @@
 variable "cluster_id" {}
 variable "task_definition_arn" {}
-variable "ecs_instance" {}
 variable "subnet_ids" {
   type = list(string)
 }
