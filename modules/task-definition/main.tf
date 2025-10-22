@@ -1,10 +1,10 @@
 resource "aws_ecs_task_definition" "nginx_task" {
   family                   = "ecs-demo-app"
-  network_mode             = "bridge"
+  network_mode             = "awsvpc"
   requires_compatibilities = ["EC2"]
   cpu                      = "256"
   memory                   = "128"
-
+  execution_role_arn = var.ecs_task_execution_role
   container_definitions = jsonencode([
     {
       name      = "myapp-container",

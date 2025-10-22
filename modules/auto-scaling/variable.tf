@@ -25,3 +25,7 @@ variable "ecs_cluster_name" {
 }
 
 variable "iam_profile_arn" {}
+variable "target_group_arn" {
+  description = "ARN del target group del ALB"
+  type        = string
+}
