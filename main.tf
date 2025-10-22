@@ -35,20 +35,23 @@ module "ecs_cluster_capacity"{
   ecs_cluster_name   = module.ecs_cluster.cluster_name
 }
 
-/*
+
 module "task_definition" {
   source = "./modules/task-definition"
 }
-*/
+
 module "ecr" {
   source = "./modules/ecr"
 }
-/*
+
 module "ecs_service" {
   source               = "./modules/ecs-service"
   cluster_id           = module.ecs_cluster.cluster_id
   task_definition_arn = module.task_definition.task_definition_arn
-  ecs_instance = module.ecs_instance.ecs_instance
+  security_group_ids = [module.security.ecs_sg_id]
+  subnet_ids         = module.vpc.public_subnets
+
+  depends_on = [module.ecs_cluster_capacity]
 }
-*/
+
 
