@@ -9,11 +9,6 @@ output "public_subnets" {
   value       = module.vpc.public_subnets
 }
 
-output "alb_sg_id" {
-  description = "Security group ID del ALB"
-  value       = module.security.alb_sg_id
-}
-
 output "ecs_sg_id" {
   description = "Security group ID de las instancias ECS"
   value       = module.security.ecs_sg_id
@@ -33,19 +28,9 @@ output "cluster_name" {
   description = "Nombre del cluster ECS"
   value       = module.ecs_cluster.cluster_name
 }
-
-
-output "load_balancer_dns" {
-  description = "DNS público del Application Load Balancer"
-  value       = module.alb.alb_dns
-}
-
-output "target_group_arn" {
-  description = "ARN del Target Group usado por el ECS Service"
-  value       = module.alb.target_group_arn
-}
-
+/*
 output "ecs_service_name" {
   description = "Nombre del servicio ECS creado"
   value       = module.ecs_service.service_name
 }
+*/

@@ -17,8 +17,3 @@ variable "public_subnet_cidrs" {
   default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
-variable "allow_ssh_from" {
-  description = "Lista de CIDRs desde los cuales se permite SSH a las instancias ECS"
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
-}
